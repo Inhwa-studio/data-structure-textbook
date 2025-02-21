@@ -1,5 +1,4 @@
-#ifndef QUEUE_H
-#define QUEUE_H
+#pragma once
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,8 +25,6 @@ int is_empty(queue* que);
 
 void enqueue(queue* que, elem item);
 
-elem dequeue(queue* que);
+elem* dequeue(queue* que);
 
-elem peek(queue* que);
-
-#endif
+elem* peek(queue* que);

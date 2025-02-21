@@ -30,24 +30,26 @@ void enqueue(queue* que, elem item){
     }
 }
 
-elem dequeue(queue* que){
+elem* dequeue(queue* que){
     if (is_empty(que)) {
         // printf("\n########## queue is empty!!!!!##########\n");
+        return NULL;
     }
     else {
         que->front = (que->front + 1) % que->size;
-        elem item = que->list[que->front];
+        elem* item = &que->list[que->front];
         // printf("\n########## item %d has dequeued.##########\n", item);
         return item;
     }
 }
 
-elem peek(queue* que){
+elem* peek(queue* que){
     if (is_empty(que)) {
         // printf("\n########## queue is empty!!!!!##########\n");
+        return NULL;
     }
     else {
-        elem item = que->list[(que->front + 1) % que->size];
+        elem* item = &que->list[(que->front + 1) % que->size];
         // printf("\n########## item %d has peeked.##########\n", item);
         return item;
     }

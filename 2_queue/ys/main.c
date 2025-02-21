@@ -1,4 +1,5 @@
-#include "queue.h"
+#include <stdbool.h>
+#include "./include/queue.h"
 #define MAX_CUSTOMER 100
 
 int main(){
@@ -9,7 +10,7 @@ int main(){
 
     queue* customerQue = create(MAX_CUSTOMER);
 
-    while (1) {
+    while (true) {
         printf("Current time = %d\n", time);
 
         if (time == 100) break;
@@ -32,7 +33,7 @@ int main(){
         }
 
         if (!is_empty(customerQue)){
-            elem* now = &customerQue->list[(customerQue->front + 1) % customerQue->size];
+            elem* now = peek(customerQue);
             if (now->playTime == 0) {
                 printf("Customer %d starts service at %d minute(s). Wating time is %d minute(s).\n", now->nCustomer, time, time - now->arriveTime);
                 totalTime += time - now->arriveTime;
