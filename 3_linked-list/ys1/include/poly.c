@@ -17,7 +17,8 @@ Node* create_poly(){
     // 최고항 밑으로는 50%확률로 항을 추가했음
     for (int i = maxExpo - 1; i >= 0; i--){
         if (rand() % 2 == 1){
-            int coef = rand() % 20 - 10;
+            int coef = rand() % 10 + 1;
+            coef *= (rand() % 2) * 2 - 1;
             elem nowPort = {coef, i};
             insert_last(head, nowPort);
         } 
