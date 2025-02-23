@@ -8,12 +8,14 @@ Node* create_poly(){
 
     int maxExpo = rand() % (10 - 5 + 1) + 5;
 
-    int coef = rand() % 20 - 10;
+    int coef = rand() % 10 + 1;
+    coef *= (rand() % 2) * 2 - 1;
+
     elem nowPort = {coef, maxExpo};
     insert_last(head, nowPort);
 
     // 최고항 밑으로는 50%확률로 항을 추가했음
-    for (int i = maxExpo - 1; i > 0; i--){
+    for (int i = maxExpo - 1; i >= 0; i--){
         if (rand() % 2 == 1){
             int coef = rand() % 20 - 10;
             elem nowPort = {coef, i};
@@ -77,13 +79,30 @@ void print_poly(Node* poly){
     }
     while (node->next != NULL){
         node = node->next;
-        if (node->port.coef > 0){
-            printf("+ %dx^%d ", node->port.coef, node->port.expo);
+        if (node->port.expo > 1){
+            if (node->port.coef > 0){
+                printf("+ %dx^%d ", node->port.coef, node->port.expo);
+            }
+            else {
+                printf("- %dx^%d ", - (node->port.coef), node->port.expo);
+            }
+        }
+        else if (node->port.expo == 1){
+            if (node->port.coef > 0){
+                printf("+ %dx ", node->port.coef);
+            }
+            else {
+                printf("- %dx ", - (node->port.coef));
+            }
         }
         else {
-            printf("- %dx^%d ", - (node->port.coef), node->port.expo);
+            if (node->port.coef > 0){
+                printf("+ %d", node->port.coef);
+            }
+            else {
+                printf("- %d", - (node->port.coef));
+            }
         }
-        
     }
     printf("\n");
 }
