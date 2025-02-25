@@ -27,7 +27,6 @@ int main() {
         int randomValue = rand() % 11;  // Generate a random number between 0 and 10
 
         if ( randomValue < 3 ){
-            ++nCustomer;
             Customer customer;
             customer.setId( ++nCustomer );
             customer.setArrivalTime( time );
@@ -45,7 +44,7 @@ int main() {
                 printf("\tCustomer %d starts service at %d minute(s). Wating time is %d minute(s).\n", currentCustomer.getId(), time, time - currentCustomer.getArrivalTime());
 
                 totalWaitTime += time - currentCustomer.getArrivalTime();
-                finalCustomer = currentCustomer.getId() + 1 ; 
+                finalCustomer = currentCustomer.getId(); 
                 currentCustomer.increaseServiceTime();
             }
             else if ( currentCustomer.getServiceTime() <= currentCustomer.getTotalServiceTime() ){
@@ -58,7 +57,6 @@ int main() {
         }
         ++time;
     }
-
     printf("Average Wating time : %.2f minute(s).\n", (double) totalWaitTime / finalCustomer);
     return 0;
 }

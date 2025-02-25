@@ -10,9 +10,10 @@ private:
     int capacity;    // Queue capacity
     int frontIndex;    // Index of the front element
     int backIndex;    // Index of the back element
+    int size;
 
 public:
-Queue(int size);
+Queue(int size_);
     void enqueue(T value);
     T dequeue();
     T& peek();

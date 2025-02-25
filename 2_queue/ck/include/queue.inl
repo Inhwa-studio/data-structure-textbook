@@ -3,41 +3,29 @@
 
 // Constructor
 template <typename T>
-Queue<T>::Queue(int size) {
-    capacity = size * 2;  
+Queue<T>::Queue(int size_) {
+    capacity = size_+1;
     arr = new T[capacity];  // Allocate memory for queue
     frontIndex = 0;
-    backIndex = -1;
+    backIndex = 0;
+    size = 0;
 }
 
 template <typename T>
 bool Queue<T>::is_empty() {
-    return backIndex < frontIndex;
+    return size == 0;  // Correct condition
 }
 
 // Inserts an element into the queue (enqueue)
 template <typename T>
 void Queue<T>::enqueue(T value) {
-    if ((backIndex + 1) % capacity == frontIndex) { // circular queue
-        int newCapacity = capacity * 2;
-        T* newArr = new T[newCapacity];
-
-        int jj = 0;
-        for (int ii = frontIndex; ii != backIndex; ii = (ii + 1) % capacity) {
-            newArr[jj++] = arr[ii];
-        }
-        newArr[jj++] = arr[backIndex];  // Copy the last element
-
-        delete[] arr;  // Free old memory
-        arr = newArr;
-        
-        frontIndex = 0;
-        backIndex = jj - 1;
-        capacity = newCapacity;
+    if (size == capacity - 1) { // circular queue
+        return;
     }
 
+    arr[backIndex] = value;  // Insert new value at the back        
     backIndex = (backIndex + 1) % capacity;
-    arr[backIndex] = value;  // Insert new value at the back
+    ++size;
 }
 
 // Removes an element from the queue (dequeue)
@@ -49,7 +37,8 @@ T Queue<T>::dequeue() {
         return dummy;
     }
     T value = arr[frontIndex];
-    frontIndex++;
+    frontIndex = (frontIndex + 1) % capacity;  // Wrap around circularly
+    size--;
     return value;
 }
 
