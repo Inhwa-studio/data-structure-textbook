@@ -31,7 +31,7 @@ void insert_first(Node* head, elem data){
     head->next = newNode;
 }
 
-void delete(Node* head, int pos){
+void del(Node* head, int pos){
     Node* prevNode = head;
     while (pos-- > 0){
         prevNode = prevNode->next;

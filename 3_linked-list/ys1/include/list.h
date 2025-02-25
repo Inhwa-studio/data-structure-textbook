@@ -18,7 +18,7 @@ void insert(Node* head, int pos, elem data);
 void insert_last(Node* head, elem data);
 void insert_first(Node* head, elem data);
 
-void delete(Node* head, int pos);
+void del(Node* head, int pos);
 void clear(Node* head);
 
 elem get_entry(Node*head, int pos);
