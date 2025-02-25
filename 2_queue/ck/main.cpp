@@ -38,7 +38,7 @@ int main() {
             printf("\tCustomer %d arrives at %d minute. Service time = %d minutes.\n", customer.getId(), customer.getArrivalTime(), customer.getTotalServiceTime());
         }
 
-        if( ~queue.is_empty() ){
+        if( !queue.is_empty() ){
             Customer& currentCustomer = queue.peek();
             // Customer currentCustomer = queue.peek();
             if( currentCustomer.getServiceTime() == 0 ){                

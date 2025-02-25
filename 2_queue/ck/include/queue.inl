@@ -18,23 +18,26 @@ bool Queue<T>::is_empty() {
 // Inserts an element into the queue (enqueue)
 template <typename T>
 void Queue<T>::enqueue(T value) {
-    if (backIndex - frontIndex + 1 == capacity) {  // If queue is full, expand capacity
+    if ((backIndex + 1) % capacity == frontIndex) { // circular queue
         int newCapacity = capacity * 2;
         T* newArr = new T[newCapacity];
 
-        // Copy existing elements in queue order
-        for (int ii = frontIndex; ii <= backIndex; ++ii) {
-            newArr[ii - frontIndex] = arr[ii];
+        int jj = 0;
+        for (int ii = frontIndex; ii != backIndex; ii = (ii + 1) % capacity) {
+            newArr[jj++] = arr[ii];
         }
+        newArr[jj++] = arr[backIndex];  // Copy the last element
 
         delete[] arr;  // Free old memory
         arr = newArr;
-        backIndex -= frontIndex;
+        
         frontIndex = 0;
+        backIndex = jj - 1;
         capacity = newCapacity;
     }
 
-    arr[++backIndex] = value;  // Insert new value at the back
+    backIndex = (backIndex + 1) % capacity;
+    arr[backIndex] = value;  // Insert new value at the back
 }
 
 // Removes an element from the queue (dequeue)
