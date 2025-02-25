@@ -18,10 +18,7 @@ int main(){
     print_poly(poly3);
 
     clear(poly1);
-    free(poly1);
     clear(poly2);
-    free(poly2);
     clear(poly3);
-    free(poly3);
     return 0;
 }

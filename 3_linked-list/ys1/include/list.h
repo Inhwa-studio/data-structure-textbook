@@ -10,9 +10,11 @@ typedef struct {
 } elem;
 
 typedef struct Node{
-    elem port;
+    elem term;
     struct Node* next;
 } Node;
+
+Node* create_list();
 
 void insert(Node* head, int pos, elem data);
 void insert_last(Node* head, elem data);

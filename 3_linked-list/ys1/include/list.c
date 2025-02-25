@@ -2,13 +2,19 @@
 #include <stdlib.h>
 #include "list.h"
 
+Node* create_list(){
+    Node* head = (Node*)malloc(sizeof(Node));
+    head->next = NULL;
+    return head;
+}
+
 void insert(Node* head, int pos, elem data){
     Node* prevNode = head;
     while (pos-- > 0){
         prevNode = prevNode->next;
     }
     Node* newNode = (Node*)malloc(sizeof(Node));
-    newNode->port = data;
+    newNode->term = data;
     newNode->next = prevNode->next;
     prevNode->next = newNode;
 }
@@ -19,14 +25,14 @@ void insert_last(Node* head, elem data){
         prevNode = prevNode->next;
     }
     Node* newNode = (Node*)malloc(sizeof(Node));
-    newNode->port = data;
+    newNode->term = data;
     newNode->next = NULL;
     prevNode->next = newNode;
 }
 
 void insert_first(Node* head, elem data){
     Node* newNode = (Node*)malloc(sizeof(Node));
-    newNode->port = data;
+    newNode->term = data;
     newNode->next = head->next;
     head->next = newNode;
 }
@@ -38,6 +44,7 @@ void del(Node* head, int pos){
     }
     Node* targetNode = prevNode->next;
     prevNode->next = targetNode->next;
+    free(targetNode);
 }
 
 void clear(Node* head){
@@ -48,7 +55,7 @@ void clear(Node* head){
         free(node);
         node = nextNode;
     }
-    head->next = NULL;
+    free(head);
 }
 
 elem get_entry(Node* head, int pos){
@@ -56,7 +63,7 @@ elem get_entry(Node* head, int pos){
     while (pos-- > -1){
         node = node->next;
     }
-    return node->port;
+    return node->term;
 }
 
 int get_length(Node* head){
@@ -77,7 +84,7 @@ void print_list(Node* head){
     Node* node = head;
     while (node->next != NULL){
         node = node->next;
-        printf("%dx^%d -> ", node->port.coef, node->port.expo);
+        printf("%dx^%d -> ", node->term.coef, node->term.expo);
     }
     printf("NULL\n");
 }
