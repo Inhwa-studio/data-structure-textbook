@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdio.h>
+#include "./doubly_linked_list.h"
 
 Node* create_mp3();
 void update_state(Node* mp3, int order);

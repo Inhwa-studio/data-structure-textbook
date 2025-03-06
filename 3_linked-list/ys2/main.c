@@ -7,10 +7,12 @@ int main(){
     Node* mp3 = create_mp3();
 
     while (true) {
+        printf(" Please enter a command [1: left, 2: right, 3: insert, 4: remove, 5: quit] : ");
         int order;
         scanf("%d", &order);
 
         if (order == 5) {
+            clear(mp3);
             break;
         }
         else {
@@ -32,7 +34,7 @@ int main(){
                 print_curr_state(mp3);
                 break;
             default:
-                printf("\nwrong input!!\n");
+                printf("wrong input!!\n");
                 break;
             }
         }
