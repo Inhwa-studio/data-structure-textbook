@@ -24,9 +24,8 @@ void insert_song(Node* mp3){
 
 void remove_song(Node* mp3){
     if (!is_empty(mp3)){
+        if (mp3->now == mp3->length) mp3->now--;
         del(mp3, mp3->now - 1);
-        if (is_empty(mp3)) mp3->now = 0;
-        else if (mp3->now > 1) mp3->now--;
     }
 }
 
