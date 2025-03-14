@@ -12,7 +12,6 @@ private:
     };
 
     Node* head;
-    Node* tail;
     int length;
 
 public:

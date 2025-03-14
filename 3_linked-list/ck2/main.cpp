@@ -42,9 +42,9 @@ int main() {
         else if (command == 3) { // Insert a new song at the current position
             printf("song name : ");
             scanf(" %[^\n]", songName); // Read full line (with spaces)
-
+  
             if (mp3.is_empty() || idx == mp3.get_length()) {
-                mp3.insert_last(std::string(songName)); // Insert at the end
+                mp3.insert_last(std::string(songName)); // Insert at the end?
                 idx = mp3.get_length() - 1;
             } else {
                 mp3.insert(idx + 1, std::string(songName)); // Insert at the next position
@@ -52,10 +52,9 @@ int main() {
             }
         }
         else if (command == 4) { // Remove the current song
-
-            if (!mp3.is_empty()) {
-                mp3.delete_at(idx);
-                // Adjust the current index after deletion
+            mp3.delete_at(idx);
+            // Adjust the current index after deletion
+            if ( mp3.get_length() != 0){                    
                 if (idx >= mp3.get_length()) {
                     idx = mp3.get_length() - 1;
                 }
@@ -64,9 +63,6 @@ int main() {
         else if (command == 5) {
             break;
         }
-        // else{
-            // printf("Please enter a number between 1 and 5.\n");   
-        // }
 
         for ( int ii = 0; ii < mp3.get_length(); ++ii){
             printf("<-| ");
@@ -81,7 +77,6 @@ int main() {
         }
         printf("\n\n");
     }
-// 이거 지금 존나 이상함 번호 안누르고 그냥 노래 제목 쓰면 들어감
 
     return 0;
 }

@@ -2,7 +2,6 @@
 template <typename T>
 DoublyLinkedList<T>::DoublyLinkedList()
 : head(nullptr)
-, tail(nullptr)
 , length(0) {
 
 }
@@ -17,6 +16,7 @@ DoublyLinkedList<T>::~DoublyLinkedList() {
 // Insert an element at a specific position
 template <typename T>
 void DoublyLinkedList<T>::insert(int pos, T item) {
+    printf("\t int pos %d\n", pos);
     if (pos < 0 || pos > length) {
         std::cerr << "Invalid position!\n";
         return;
@@ -47,13 +47,15 @@ template <typename T>
 void DoublyLinkedList<T>::insert_last(T item) {
     Node* newNode = new Node(item);
     newNode->data = item;
-    if (!head) {
+    if (!head) { // if head is nullptr
         head = newNode;
-        tail = newNode;
+        newNode->prev = newNode;
+        newNode->next = newNode;
     } else {
-        newNode->prev = tail;
-        tail->next = newNode;
-        tail = newNode;
+        newNode->prev = head->prev;
+        newNode->next = head;
+        head->prev->next = newNode;
+        head->prev = newNode;
     }
     length++;
 }
@@ -65,10 +67,13 @@ void DoublyLinkedList<T>::insert_front(T item) {
     newNode->data = item;
     if (!head) {
         head = newNode;
-        tail = newNode;
+        newNode->next = newNode;
+        newNode->prev = newNode;
     } else {
+        newNode->prev = head->prev;
         newNode->next = head;
         head->prev = newNode;
+        head->prev->next = newNode;
         head = newNode;
     }
     length++;
@@ -85,18 +90,16 @@ void DoublyLinkedList<T>::delete_at(int pos) {
     Node* tmp;
     if (pos == 0) {
         tmp = head;
-        head = head->next;
-        if (head) {
-            head->prev = nullptr;
-        }
-        if (tmp == tail) {
-            tail = nullptr;
+        if (head) { // if head is NOT nullptr
+            head->next->prev = head->prev;
+            head->prev->next = head->next;
+            head = head->next;
         }
     } else if (pos == length - 1) {
-        tmp = tail;
-        tail = tail->prev;
-        if (tail) {
-            tail->next = nullptr;
+        tmp = head->prev;
+        if (tmp) { // if tail is NOT nullptr
+            tmp->prev->next = head;
+            head->next->prev = tmp;
         }
     } else {
         tmp = head;
