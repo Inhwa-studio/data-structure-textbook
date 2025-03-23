@@ -9,7 +9,11 @@ int main(){
     while (true) {
         printf(" Please enter a command [1: left, 2: right, 3: insert, 4: remove, 5: quit] : ");
         int order;
-        scanf("%d", &order);
+        if (scanf("%d", &order) != 1){
+            printf("wrong input!!\n");
+            while (getchar() != '\n');
+            continue;
+        }
 
         if (order == 5) {
             clear(mp3);

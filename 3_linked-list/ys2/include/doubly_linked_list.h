@@ -1,14 +1,14 @@
 #pragma once
 
 #include <stdbool.h>
+#include <stdbool.h>
 #define MAX_LEN 20
 
 typedef struct Node {
     char* nodeData;
     struct Node* next;
     struct Node* prev;
-    int length;
-    int now;
+    int idx;
 } Node;
 
 Node* create_list();

@@ -12,8 +12,7 @@ Node* create_list(){
 
     head->next = head;
     head->prev = head;
-    head->length = 0;
-    head->now = 0;
+    head->idx = 0;
     return head;
 }
 
@@ -33,34 +32,34 @@ void insert(Node* head, int pos, char* data){
     (prevNode->next)->prev = curr;
     prevNode->next = curr;
 
-    if (pos == 0) {
-        curr->length = 0;
-        if (head->length >= 1) (curr->next)->length = -1;
-    }
-    else curr->length = -1;
+    // if (pos == 0) {
+    //     curr->length = 0;
+    //     if (head->length >= 1) (curr->next)->length = -1;
+    // }
+    // else curr->length = -1;
 
-    head->length++;
+    // head->length++;
 }
 
-void rotate_right(Node** head){
-    if (get_length(*head) >= 2){
-        Node* target = (*head)->next;
-        target->length = (*head)->length;
-        (*head)->length = -1;
-        (*head) = target;
-        ((*head)->prev)->nodeData = (*head)->nodeData;
-    }
-}
+// void rotate_right(Node** head){
+//     if (get_length(*head) >= 2){
+//         Node* target = (*head)->next;
+//         target->length = (*head)->length;
+//         (*head)->length = -1;
+//         (*head) = target;
+//         ((*head)->prev)->nodeData = (*head)->nodeData;
+//     }
+// }
 
-void rotate_left(Node** head){
-    if (get_length(*head) >= 2){
-        Node* target = (*head)->prev;
-        target->length = (*head)->length;
-        (*head)->length = -1;
-        (*head) = target;
-        ((*head)->next)->nodeData = (*head)->nodeData;
-    }
-}
+// void rotate_left(Node** head){
+//     if (get_length(*head) >= 2){
+//         Node* target = (*head)->prev;
+//         target->length = (*head)->length;
+//         (*head)->length = -1;
+//         (*head) = target;
+//         ((*head)->next)->nodeData = (*head)->nodeData;
+//     }
+// }
 
 void del(Node* head, int pos){
     Node* prevNode = head;
@@ -75,17 +74,16 @@ void del(Node* head, int pos){
 
     free(targetNode->nodeData);
     free(targetNode);
-
-    head->length--;
 }
 
 void clear(Node* head){
-    Node* targetNode = head;
-    for (int i = 0; i < head->length + 1; i++){
+    Node* targetNode = head->next;
+    while (targetNode != head){
         targetNode = targetNode->next;
         free((targetNode->prev)->nodeData);
         free(targetNode->prev);
     }
+    free(head);
 }
 
 char* get_entry(Node* head, int pos){
@@ -97,9 +95,15 @@ char* get_entry(Node* head, int pos){
 }
 
 int get_length(Node* head){
-    return head->length;
+    int length = 0;
+    Node* targetNode = head->next;
+    while (targetNode != head) {
+        targetNode = targetNode->next;
+        length++;
+    }
+    return length;
 }
 
 bool is_empty(Node* head){
-    return head->length == 0;
+    return get_length(head) == 0;
 }
