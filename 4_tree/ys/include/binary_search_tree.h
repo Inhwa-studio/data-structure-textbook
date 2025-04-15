@@ -31,4 +31,4 @@ TreeNode* search(TreeNode* tree, char name[]);
 // int get_height(TreeNode* tree);
 bool is_empty(TreeNode* tree);
 void clear(TreeNode* tree);
-void print_tree(TreeNode* tree);
+void print_tree(TreeNode* tree, int* counter);

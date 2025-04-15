@@ -87,10 +87,10 @@ void clear(TreeNode* tree) {
     free(tree);
 }
 
-void print_tree(TreeNode* tree) {
+void print_tree(TreeNode* tree, int* counter) {
     if (tree != NULL) {
-        print_tree(tree->left);
-        printf("Name: %s, Phone Number: %s, Email: %s\n", tree->key.name, tree->key.phone, tree->key.email);
-        print_tree(tree->right);
+        print_tree(tree->left, counter);
+        printf("%d. Name: %s, Phone Number: %s, Email: %s\n", (*counter)++, tree->key.name, tree->key.phone, tree->key.email);
+        print_tree(tree->right, counter);
     }
 }

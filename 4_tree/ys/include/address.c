@@ -60,8 +60,9 @@ void display_node(TreeNode* target) {
 void display_address(TreeNode* address) {
     if (is_empty(address)) printf("There is no contact!!!\n");
     else {
+        int counter = 1;
         printf("Displaying all contacts:\n");
-        print_tree(address);
+        print_tree(address, &counter);
     }
     printf("\n");
 }
