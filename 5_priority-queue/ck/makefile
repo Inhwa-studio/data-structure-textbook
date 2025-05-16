@@ -7,7 +7,7 @@ CFLAGS = -I$(INCLUDE_DIR)
 LIBS = 
 
 # Source files
-SRCINCLUDE = 
+SRCINCLUDE = taskManager.cpp
 SRCINCLUDE := $(addprefix $(INCLUDE_DIR), $(SRCINCLUDE))
 SRCS = main.cpp $(SRCINCLUDE)
 

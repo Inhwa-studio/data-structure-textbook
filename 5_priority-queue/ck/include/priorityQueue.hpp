@@ -37,6 +37,8 @@ public:
     bool isFull() const;
     void clear();
     void print_queue() const;
+    void print_TopPriority() const;
 };
+
 #include "priorityQueue.inl"
 

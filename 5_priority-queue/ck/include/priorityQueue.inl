@@ -104,3 +104,8 @@ void PriorityQueue<T>::print_queue() const {
 
     cout << endl;
 }
+
+template <typename T>
+void PriorityQueue<T>::print_TopPriority() const{
+    cout << "(" << heap[0].data << ", priority=" << heap[0].priority << ") ";
+}
