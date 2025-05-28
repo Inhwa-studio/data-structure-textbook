@@ -1,7 +1,7 @@
 # Variables
 CC = gcc
 TARGET = practice.exe  # Build target
-SRCINCLUDE_DIR = ./include/
+SRCINCLUDE_DIR = include\\
 
 CFLAGS = -I$(SRCINCLUDE_DIR)
 LIBS = 
@@ -24,6 +24,6 @@ $(SRCINCLUDE_DIR)%.o: $(SRCINCLUDE_DIR)%.c
 
 # Clean target
 clean:
-	rm -f $(OBJS) $(TARGET)
+	del /F $(OBJS) $(TARGET)
 
 re: clean $(TARGET)

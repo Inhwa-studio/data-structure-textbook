@@ -6,19 +6,25 @@
 typedef struct {
     int priority;
     char name[MAN_LEN];
-} element;
+} Node;
 
 typedef struct {
-    element tasks[MAX_TASKS + 1];
+    Node tasks[MAX_TASKS + 1];
     int nTask;
 } Queue;
 
-Queue insert(Queue queue, element item);
+Queue heapifyup(Queue queue, int index);
+
+Queue heapifydown(Queue queue, int index);
+
+Queue insert(Queue queue, Node item);
 
 Queue remove_task(Queue queue);
 
-element peek(Queue queue);
+Node peek(Queue queue);
 
-void print_element(element node);
+void print_node(Node node);
 
 void print_queue(Queue queue);
+
+int is_empty(Queue queue);

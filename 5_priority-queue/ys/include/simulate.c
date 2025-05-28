@@ -26,7 +26,7 @@ Queue generate_task() {
 
     srand(time(NULL));
     for (int i = 0; i < genTask; i++) {
-        element data;
+        Node data;
         data.priority = rand() % 10 + 1;
         sprintf(data.name, "Task%d", i);
         task_queue = insert(task_queue, data);
@@ -52,8 +52,8 @@ void display_current(Queue task_queue) {
     }
     else {
         printf("🔥 Current Task: ");
-        element current = peek(task_queue);
-        print_element(current);
+        Node current = peek(task_queue);
+        print_node(current);
     }
 }
 
@@ -71,7 +71,7 @@ Queue complete_task(Queue task_queue) {
 }
 
 Queue add_task(Queue task_queue) {
-    element data;
+    Node data;
     printf("Enter task name:");
     scanf("%s", data.name);
     printf("Enter priority (1~10):");
